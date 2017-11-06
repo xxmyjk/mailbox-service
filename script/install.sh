@@ -18,7 +18,7 @@ echo "========= Mysql Config Start ========="
 mysql_install_db --user=mysql
 
 # cover default mariadb config
-cp /opt/conf/my.conf /etc/mysql/my.conf
+cp /opt/my.conf /etc/mysql/my.conf
 
 # set mysql startup script
 cp /usr/share/mysql/mysql.server /etc/init.d/
@@ -39,6 +39,9 @@ echo "\n\n"
 echo "========= Merge Postfix Config Start ========="
 # cover default postfix config
 cp /opt/*.cf /etc/postfix/
+
+# settings
+#adduser -D -h /home/vmail -u 5000 vmail vmail
 
 postconf -e 'myhostname = mail.xman.legal'
 postconf -e 'mydestination = localhost, localhost.localdomain'
@@ -73,7 +76,15 @@ echo "========= Merge Postfix Config End ========="
 echo "\n\n"
 
 echo "========= Merge Dovecot Config Start ========="
-# ccccccc
+# cover default dovecot config
+cp /opt/dovecot* /etc/dovecot/
 echo "========= Merge Dovecot Config End ========="
+
+echo "\n\n"
+
+echo "========= Modify Runtime User Start ========="
+chown -R postfix:postfix /etc/postfix
+chown -R dovecot:dovecot /etc/dovecot
+echo "========= Modify Runtime User End ========="
 
 echo "\n\n"
