@@ -8,5 +8,7 @@ ADD ./script/* ./conf /opt/
 # run install.sh
 RUN sh -c /opt/install.sh
 
+EXPOSE 25 465 587 110 995 143 993
+
 # start
 CMD sh -c /opt/start.sh
