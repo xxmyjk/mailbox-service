@@ -9,4 +9,4 @@ ADD ./script/* ./conf /opt/
 RUN sh -c /opt/install.sh
 
 # start
-#CMD echo hello, world.
+CMD sh -c /opt/start.sh

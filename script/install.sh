@@ -11,8 +11,6 @@ apk add postfix postfix-mysql dovecot dovecot-mysql mariadb mariadb-client --no-
 rm -rf /var/cache/apk/*
 echo "========= Basic Package Install End ========="
 
-echo "\n\n"
-
 echo "========= Mysql Config Start ========="
 # install default databases
 mysql_install_db --user=mysql
@@ -33,8 +31,6 @@ mysql < /opt/postfix.sql
 # create new database & set root password
 mysqladmin -u root -h localhost password 'A-Default-Random-Password'
 echo "========= Mysql Config End ========="
-
-echo "\n\n"
 
 echo "========= Merge Postfix Config Start ========="
 # cover default postfix config
@@ -73,18 +69,12 @@ postconf -e 'dovecot_destination_recipient_limit = 1'
 
 echo "========= Merge Postfix Config End ========="
 
-echo "\n\n"
-
 echo "========= Merge Dovecot Config Start ========="
 # cover default dovecot config
 cp /opt/dovecot* /etc/dovecot/
 echo "========= Merge Dovecot Config End ========="
 
-echo "\n\n"
-
 echo "========= Modify Runtime User Start ========="
 chown -R postfix:postfix /etc/postfix
 chown -R dovecot:dovecot /etc/dovecot
 echo "========= Modify Runtime User End ========="
-
-echo "\n\n"
