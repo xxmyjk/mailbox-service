@@ -13,3 +13,7 @@ CREATE TABLE mail.users (email varchar(80) NOT NULL, password varchar(20) NOT NU
 
 -- 传输路径表
 CREATE TABLE mail.transport ( domain varchar(128) NOT NULL default '', transport varchar(128) NOT NULL default '', UNIQUE KEY domain (domain) );
+
+-- 测试账号, 测完删除
+INSERT INTO mail.domains (domain) VALUES ('');
+INSERT INTO mail.users (email, password) VALUES ('yusen@yusengy.info', ENCRYPT('123123'));
