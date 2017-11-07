@@ -16,4 +16,4 @@ CREATE TABLE mail.transport ( domain varchar(128) NOT NULL default '', transport
 
 -- 测试账号, 测完删除
 INSERT INTO mail.domains (domain) VALUES ('');
-INSERT INTO mail.users (email, password) VALUES ('yusen@yusengy.info', ENCRYPT('123123'));
+INSERT INTO mail.users (email, password) VALUES ('test@oneway.legal', ENCRYPT('123456'));
