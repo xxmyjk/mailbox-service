@@ -11,4 +11,4 @@ RUN sh -c /opt/install.sh
 EXPOSE 25 465 587 110 995 143 993
 
 # start
-CMD ['/opt/start.sh']
+ENTRYPOINT ["sh", "-c", "/opt/start.sh && sh"]
