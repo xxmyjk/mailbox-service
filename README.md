@@ -12,3 +12,8 @@
 * 设置hostname
 * 开放防火墙端口 `25, 465, 587, 110, 995, 143, 993`
 * 域名解析
+
+## design
+
+[](./design/pt.png)
+[](./design/ft.png)
