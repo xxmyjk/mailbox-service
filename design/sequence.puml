@@ -1,0 +1,79 @@
+@startuml
+'邮箱系统时序图
+
+actor "兼职(pt)" as pt
+actor "全职(ft)" as ft
+
+participant "律师系统" as Lawyer
+participant "邮箱系统" as Mail
+participant "用户系统" as User
+participant "通知" as Msg
+
+title 兼职流程
+
+'PT 提交申请流程
+pt -> Lawyer :PT申请邮箱账号
+activate Lawyer
+    Lawyer -> Lawyer :记录申请
+    return 提交申请成功
+deactivate Lawyer
+
+'PT 修改邮箱密码
+pt -> Lawyer: PT修改密码
+activate Lawyer
+    Lawyer -> Mail :邮箱密码修改
+    activate Mail
+        Mail -> Mail :更新密码
+
+        return 修改成功
+    deactivate Mail
+
+    Lawyer --> Msg :邮箱密码更新通知
+    Lawyer --> pt :修改成功
+deactivate Lawyer
+
+
+newpage 全职流程
+
+'FT查看申请列表流程
+ft -> Lawyer :查看申请列表
+activate Lawyer
+    return 申请列表
+deactivate Lawyer
+
+
+'FT通过申请流程(IMPORTAN!)
+ft -> Lawyer :Accept
+activate Lawyer
+    Lawyer -> Mail :添加邮箱
+    activate Mail
+        Mail -> Mail :postfix添加邮箱
+        return email账号
+    deactivate Mail
+
+    Lawyer -> Lawyer :更新律师信息
+
+    Lawyer -> User :修改登录邮箱
+    activate User
+        User -> User :修改登录邮箱
+        User -> User :保留原登录邮箱
+
+        User --> Msg :邮箱更新通知
+
+        return 修改成功
+    deactivate User
+
+    Lawyer -> Lawyer :记录审核通过
+    Lawyer --> ft :审核通过
+deactivate Lawyer
+
+'FT拒绝流程
+ft -> Lawyer :Deny
+activate Lawyer
+    Lawyer -> Lawyer :记录审核失败
+    Lawyer --> ft :拒绝开通
+
+    Lawyer --> Msg: 审核失败通知
+deactivate Lawyer
+
+@enduml
