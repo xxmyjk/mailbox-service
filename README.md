@@ -15,5 +15,6 @@
 
 ## design
 
-[](./design/pt.png)
-[](./design/ft.png)
+![pt](./design/pt.png)
+------
+![ft](./design/ft.png)
